@@ -8,16 +8,11 @@
 
 #import "KeyPadCell.h"
 
-
-static NSString *kCross = @"cross";
-static NSString *kCircle = @"circle";
-
 @implementation KeyPadCell
 
 - (void)setNeedsDisplay
 {
 }
-
 
 + (KeyPadCell *)loadKeyPadCell
 {
