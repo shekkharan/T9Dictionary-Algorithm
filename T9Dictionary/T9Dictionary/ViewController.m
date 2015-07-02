@@ -135,7 +135,10 @@
     FileReader * reader = [[FileReader alloc] initWithFilePath:fileRoot];
     NSString * line = nil;
     while ((line = [reader readLine])) {
+        line = [line stringByReplacingOccurrencesOfString:@" "
+                                               withString:@""];
         NSMutableArray *lineArray = (NSMutableArray *)[line componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        
         array = lineArray;
     }
     
@@ -169,11 +172,14 @@
     }
     CellItem *item = [self.cellItems objectAtIndex:indexPath.row];
     buttonPattern = [buttonPattern stringByAppendingString:item.number];
-    predictedWord = [mTree getWordFromPattern:buttonPattern andPredictionCount:predictionCount];
+    //predictedWord = [mTree getWordFromPattern:buttonPattern andPredictionCount:predictionCount];
     self.lblWord.text = predictedWord;
     if (buttonPattern.length == 0) {
         predictedWord = @"";
     }
+    //if (predictionCount == 0) {
+        self.lblWord.text = buttonPattern;
+   // }
 }
 
 
@@ -184,8 +190,9 @@
 
 - (IBAction)btnNextPredictionClicked:(id)sender {
     predictionCount++;
-    if (predictionCount == 1) {
-        predictionCount = 2;
+   
+    if (predictionCount > 0) {
+        [self.btnNextPrediction setTitle:@"Show Next Prediction" forState:UIControlStateNormal];;
     }
     predictedWord = [mTree getWordFromPattern:buttonPattern andPredictionCount:predictionCount];
     self.lblWord.text = predictedWord;

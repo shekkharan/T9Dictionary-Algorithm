@@ -77,6 +77,7 @@ static Tree *instance;
     int num = 0;
     while (i < pattern.length) {
         if (node == nil) {
+            //i++;
             [self.delegate buttonPatternReset];
             return @"No Prediction";
         }
@@ -88,16 +89,20 @@ static Tree *instance;
                 if (predictionCount < [node.linkedList count]) {
                     word = [node.linkedList objectAtIndex:predictionCount];
                 }
-                else if (predictionCount != 0 )
-                {
-                    [self.delegate predictionCountReset];
-                    word = [node.linkedList objectAtIndex:0];
-                }
                 else
                 {
-                    [self.delegate buttonPatternReset];
-                    return @"No Prediction";
+                   if (predictionCount != 0 )
+                    {
+                        [self.delegate predictionCountReset];
+                        word = [node.linkedList objectAtIndex:0];
+                    }
+                    else
+                    {
+                        [self.delegate buttonPatternReset];
+                        return @"No Prediction";
+                    }
                 }
+                
             }
             node = node.middle;
         }
@@ -107,15 +112,18 @@ static Tree *instance;
                 if (predictionCount < [node.linkedList count]) {
                     word = [node.linkedList objectAtIndex:predictionCount];
                 }
-                else if (predictionCount != 0)
-                {
-                    [self.delegate predictionCountReset];
-                    word = [node.linkedList objectAtIndex:0];
-                }
                 else
                 {
-                    [self.delegate buttonPatternReset];
-                    return @"No Prediction";
+                    if (predictionCount != 0 )
+                    {
+                        [self.delegate predictionCountReset];
+                        word = [node.linkedList objectAtIndex:0];
+                    }
+                    else
+                    {
+                        [self.delegate buttonPatternReset];
+                        return @"No Prediction";
+                    }
                 }
             }
             node = node.left;
@@ -126,15 +134,18 @@ static Tree *instance;
                 if (predictionCount < [node.linkedList count]) {
                     word = [node.linkedList objectAtIndex:predictionCount];
                 }
-                else if (predictionCount != 0)
-                {
-                    [self.delegate predictionCountReset];
-                    word = [node.linkedList objectAtIndex:0];
-                }
                 else
                 {
-                    [self.delegate buttonPatternReset];
-                    return @"No Prediction";
+                    if (predictionCount != 0 )
+                    {
+                        [self.delegate predictionCountReset];
+                        word = [node.linkedList objectAtIndex:0];
+                    }
+                    else
+                    {
+                        [self.delegate buttonPatternReset];
+                        return @"No Prediction";
+                    }
                 }
             }
             node = node.right;
