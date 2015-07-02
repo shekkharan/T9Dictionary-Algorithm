@@ -1,0 +1,16 @@
+//
+//  main.m
+//  T9Dictionary
+//
+//  Created by Shekhar Sasikumar on 7/2/15.
+//  Copyright (c) 2015 Myaango. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+
+int main(int argc, char * argv[]) {
+    @autoreleasepool {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+    }
+}
